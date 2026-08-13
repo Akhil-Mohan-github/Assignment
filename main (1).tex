@@ -1,0 +1,259 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{array}
+
+\title{Assignment}
+\author{Akhil Mohan}
+\date{\today}
+
+\begin{document}
+
+% Title Slide
+\begin{frame}
+\titlepage
+\end{frame}
+
+% Examples of Sets
+\begin{frame}{Examples of Sets}
+Even numbers:
+
+
+\[
+A = \{ x \in \mathbb{Z} \mid x \text{ is even} \}
+\]
+
+
+
+Odd numbers:
+
+
+\[
+B = \{ x \in \mathbb{Z} \mid x \text{ is odd} \}
+\]
+
+
+\end{frame}
+
+\begin{frame}{Examples of Sets (contd.)}
+Natural numbers less than 10:
+
+
+\[
+C = \{ x \in \mathbb{N} \mid x < 10 \}
+\]
+
+
+
+Multiples of 5:
+
+
+\[
+D = \{ x \in \mathbb{Z} \mid x = 5n, \, n \in \mathbb{Z} \}
+\]
+
+
+\end{frame}
+
+\begin{frame}{Examples of Sets (contd.)}
+Prime numbers:
+
+
+\[
+E = \{ x \in \mathbb{N} \mid x \text{ is prime} \}
+\]
+
+
+
+Integers between -5 and 5:
+
+
+\[
+F = \{ x \in \mathbb{Z} \mid -5 \leq x \leq 5 \}
+\]
+
+
+\end{frame}
+
+\begin{frame}{Examples of Sets (contd.)}
+Perfect squares:
+
+
+\[
+G = \{ x \in \mathbb{N} \mid x = n^2, \, n \in \mathbb{N} \}
+\]
+
+
+
+Real numbers greater than 0:
+
+
+\[
+H = \{ x \in \mathbb{R} \mid x > 0 \}
+\]
+
+
+\end{frame}
+
+\begin{frame}{Examples of Sets (contd.)}
+Students scoring above 80:
+
+
+\[
+I = \{ x \in S \mid \text{score}(x) > 80 \}
+\]
+
+
+
+Letters in the word APPLE:
+
+
+\[
+J = \{ x \in \{A,B,C,\dots,Z\} \mid x \text{ appears in ``APPLE''} \}
+\]
+
+
+\end{frame}
+
+% Inclusion-Exclusion Principle
+\begin{frame}{Inclusion-Exclusion Principle}
+General Formula:
+
+
+\[
+\left| \bigcup_{i=1}^{\infty} A_i \right|
+= \sum_{k=1}^{\infty} (-1)^{k+1} 
+\left( \sum_{1 \leq i_1 < i_2 < \cdots < i_k} 
+\big| A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k} \big| \right)
+\]
+
+
+\end{frame}
+
+\begin{frame}{Proof Sketch}
+1. Finite Truncation:
+
+
+\[
+\left| \bigcup_{i=1}^{n} A_i \right|
+= \sum_{k=1}^{n} (-1)^{k+1} 
+\sum_{1 \leq i_1 < \cdots < i_k \leq n} 
+\big| A_{i_1} \cap \cdots \cap A_{i_k} \big|
+\]
+
+
+
+2. Limit Process: As $n \to \infty$, union approaches infinite union.
+\end{frame}
+
+\begin{frame}{Proof Sketch (contd.)}
+3. Element-wise Counting:
+
+
+\[
+\binom{m}{1} - \binom{m}{2} + \binom{m}{3} - \cdots + (-1)^{m+1}\binom{m}{m} = 1
+\]
+
+
+
+4. Conclusion: Each element counted exactly once.
+\end{frame}
+
+% Types of Sets
+\begin{frame}{Types of Sets}
+\begin{tabular}{|>{\bfseries}m{4cm}|m{6cm}|}
+\hline
+Type of Set & Example \\
+\hline
+Numerical & Sensor readings: $\{23.1, 24.5, 25.0\}$ \\
+Categorical & Sentiment labels: $\{\text{Positive}, \text{Negative}\}$ \\
+Time Series & Stock prices: $\{(t_1,100), (t_2,102)\}$ \\
+Ordinal & Satisfaction: $\{\text{Poor}, \text{Fair}, \text{Good}\}$ \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Types of Sets (contd.)}
+\begin{tabular}{|>{\bfseries}m{4cm}|m{6cm}|}
+\hline
+Type of Set & Example \\
+\hline
+Image Set & MNIST digits $\{0,1,2,\dots,9\}$ \\
+Text Set & NLP corpus: $\{\text{``AI is powerful''}\}$ \\
+Web/API Set & Tweets: $\{\text{Tweet}_1, \text{Tweet}_2\}$ \\
+Multivariate & Patient records: $\{(\text{Age}, \text{BP})\}$ \\
+\hline
+\end{tabular}
+\end{frame}
+
+% Posets
+\begin{frame}{Partially Ordered Sets (Posets)}
+Definition: A poset $(P, \leq)$ satisfies:
+\begin{itemize}
+    \item Reflexive: $a \leq a$
+    \item Antisymmetric: $a \leq b$ and $b \leq a \Rightarrow a=b$
+    \item Transitive: $a \leq b, b \leq c \Rightarrow a \leq c$
+\end{itemize}
+Not all elements need to be comparable.
+\end{frame}
+
+\begin{frame}{Poset Example: Divisibility on $\{1,2,4\}$}
+
+
+\[
+1 \leq 2 \leq 4
+\]
+
+
+\begin{tikzpicture}[scale=1]
+\node (1) {1};
+\node (2) [above=of 1] {2};
+\node (4) [above=of 2] {4};
+\draw (1) -- (2);
+\draw (2) -- (4);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Poset Example: Power set of $\{a,b\}$}
+
+
+\[
+\emptyset \subseteq \{a\}, \{b\} \subseteq \{a,b\}
+\]
+
+
+\begin{tikzpicture}[scale=1]
+\node (empty) {$\emptyset$};
+\node (a) [above left=of empty] {$\{a\}$};
+\node (b) [above right=of empty] {$\{b\}$};
+\node (ab) [above=of empty,yshift=2cm] {$\{a,b\}$};
+\draw (empty) -- (a);
+\draw (empty) -- (b);
+\draw (a) -- (ab);
+\draw (b) -- (ab);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Poset Example: Divisibility on $\{1,2,3,6\}$}
+
+
+\[
+1 \leq 2 \leq 6, \quad 1 \leq 3 \leq 6
+\]
+
+
+\begin{tikzpicture}[scale=1]
+\node (1) {1};
+\node (2) [above left=of 1] {2};
+\node (3) [above right=of 1] {3};
+\node (6) [above=of 1,yshift=2cm] {6};
+\draw (1) -- (2);
+\draw (1) -- (3);
+\draw (2) -- (6);
+\draw (3) -- (6);
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
